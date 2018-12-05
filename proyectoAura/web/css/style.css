@@ -1,0 +1,374 @@
+*,*:after, *:before{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-style: normal;
+    font-family: 'Roboto', sans-serif;
+}
+/******************************************** Login **********************************************************/
+
+body {
+    background-image:url("https://s3.amazonaws.com/proyectoaura-storage/img/footer.png"); 
+    background-position: bottom; 
+    background-size:100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+.row{
+    width: 100%;
+}
+
+.logo{
+    height: 116px;
+}
+
+.panel h2{ 
+    color:#444444; 
+    font-size:18px; 
+    margin:0 0 8px 0;
+}
+
+.panel p { 
+    color:#777777; 
+    font-size:14px; 
+    margin-bottom:30px; 
+    line-height:24px;
+}
+.login-form .form-control {
+    width: 100%;
+    border: none;
+    font-size: 12px ;
+    font-weight: bold;
+    border-bottom: 1px solid #777777;
+    border-radius: 0px;
+}
+.main-div {
+    position: relative;
+    background: #ffffff none repeat scroll 0 0;
+    border: solid 1px #ccccff;
+    border-radius: 5px;
+    margin: 10% auto;
+    max-width: 50%;
+    padding: 100px 100px 100px 100px;
+    box-shadow: 10px 10px 5px grey;
+}
+
+.login-form .form-group {
+    margin-bottom:10px;
+}
+
+.login-form{ 
+    text-align:center;
+}
+
+.forgot a {
+    color: #777777;
+    font-size: 14px;
+    text-decoration: underline;
+}
+.login-form  .btn.btn-primary {
+    background: dodgerblue none repeat scroll 0 0;
+    border-color: #f0ad4e;
+    color: #ffffff;
+    font-size: 14px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+}
+.links{
+    text-align: right; 
+    margin-bottom:30px;
+    font-size: 14px;
+
+}
+
+.olvideContraseña{
+    color: rgb(67,66,93); 
+    text-decoration: none !important;
+}
+
+.contenedorBotones{
+    margin-top: 15%;
+    margin-bottom: 6%;
+}
+.btnInicioSesion{
+    background: rgb(0,167, 255);
+    border:1px solid transparent;
+    border-radius: 7px;
+    padding:11px 20px;
+    color: #ffffff;
+    margin-right: 24px;
+    transition: 1s;
+}
+.btnInicioSesion:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: 1s;
+}
+
+.btnCrearUsuario{
+    background:#ffffff;
+    border-radius: 7px;
+    padding:11px 20px;
+    color: rgb(67,66,93);
+    border: 1px solid rgb(67,66,93);
+    transition: 1s;
+    text-decoration: none;
+}
+
+.btnCrearUsuario:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: 1s;
+}
+
+.botto-text {
+    color: #000000;
+    font-size: 14px;
+    margin: auto;    
+    margin-top: 5%;
+    position: absolute;
+    margin-top: 13%;
+    right: 22%;
+}
+
+.login-form .btn.btn-primary.reset {
+    background: #ff9900 none repeat scroll 0 0;
+}
+/******************************************** Fin Login **********************************************************/
+/******************************************** Home **********************************************************/
+/*menu*/
+#contenedorMenu{
+    background: white;
+    width:16%;
+    border-right: 1px solid rgb(67,66,93);
+    box-shadow:  8px 0px 10px 0px rgba(67,66,93, .09);
+}
+.contenedorTituloMenu{
+    margin-left: 21px;
+    margin-top: 16px;
+}
+
+.tituloMenu{
+    font-size: 14px;
+    color: rgb(67,66,93); 
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+.subtituloMenu{
+    font-weight: bold;
+    color: rgb(67,66,93); 
+}
+.botonMenu{
+    margin-left: 7px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: linear-gradient(96deg, rgb(0,246,255) -16%, rgb(255,255,0) 66%);
+    width: 91%;
+    border-radius: 21px;
+    border: 1px solid transparent;
+    color: white;
+    font-size: 32px;
+    text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+.botonMenu2{
+    color: white;
+    padding: 3% 24px;
+    margin: -31px;
+}
+
+.botonMenu2:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.botonMenu:hover{
+    cursor: pointer;
+}
+
+.catalogo{
+    margin-left: 51px;
+    font-size: 20px;
+    color: rgb(67,66,93);
+}
+/*Fin menu*/
+/*Navbar*/
+.navbar{
+   box-shadow:  0px 4px 23px -6px rgba(17, 17, 17, .06);
+   background: #ffffff;
+}
+
+.logoNavbar{
+    width: 28%;
+}
+
+.iconoHeader{
+    color: rgb(67,66,93);
+    text-decoration: none;
+    font-size: 35px;
+    font-weight: 600;
+    width: 15%;
+}
+.iconoHeader:hover{
+    color: rgb(67,66,93);
+}
+
+.NombreConsumidor{
+    color: rgb(67,66,93);
+    margin-left: 2px;
+}
+.puntos{
+    color: rgb(67,66,93);
+}
+.NombreConsumidor:hover{
+    color: rgb(67,66,93);
+    cursor: context-menu;
+}
+.puntos:hover{
+    color: rgb(67,66,93);
+}
+
+
+/*fin navbar*/
+.contenedorHome{
+    margin-top: 27px;
+}
+
+.back { 
+    text-align: left; 
+    margin-top:10px;
+}
+
+.back a {
+    color: #444444; 
+    font-size: 13px;
+    text-decoration: none;
+}
+/*carrusel*/
+.blog .carousel-indicators {
+    left: 0;
+    top: auto;
+    bottom: -40px;
+
+}
+
+.blog .carousel-indicators li {
+    background: #a3a3a3;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+
+.blog .carousel-indicators .active {
+    background: #777777;
+}
+
+.tab1{
+    background: white;
+    margin-bottom: 5%;
+    border-radius: 6px;
+    box-shadow: 10px 10px 5px grey;
+    padding-bottom: 39px;
+    border: 1px solid grey;
+}
+/******************************************** Fin Home **********************************************************/
+/******************************************* Descuento **********************************************************/
+#estrellitas{
+    text-align: center;
+}
+.estrellas{
+    margin-top: 3%;
+    position: relative;
+    width: 100%;
+    height: 88px;
+}
+
+/* Estrellas*/
+.estrellas .estrella1{
+    width: 8%;
+    position: absolute;
+    top: 100%;
+    left: 19%;
+}
+.estrellas .estrella2{
+    width: 8%;
+    position: absolute;
+    top: 25%;  
+    left: 31%;
+}
+.estrellas .estrella3{
+    width: 8%;
+    position: absolute; 
+    left: 46%;
+}
+.estrellas .estrella4{
+    width: 8%;
+    position: absolute;
+    top: 25%;
+    left: 61%;
+}
+.estrellas .estrella5{
+    width: 8%;
+    position: absolute;
+    top: 100%;
+    left: 74%;
+}
+/* Fin Estrellas*/
+
+.tituloBienvenido{
+    color: rgb(67,66,93);
+    font-size: 60px;
+    font-weight: 600;
+    margin-top: 3%;
+}
+.textoBienvenido{
+    text-align: justify;
+    width: 75%;
+    margin-left: 13%;
+}
+
+/*Parte Seba*/
+#div-form-val{
+    width: 100%;
+}
+/*para subir la imagen*/
+.agregarImagen{
+    width: 37%;
+    float: left;
+    margin-right: 4%;
+    background: linear-gradient(96deg, rgb(0, 167, 255) -16%, rgb(0, 255, 137) 66%);
+    border: 1px solid rgb(67,66,93);
+    font-weight: 500;
+    border-radius: 7px;
+}
+.titulo-control{
+    text-align: center;
+    color: white;
+}
+.agregarImg{
+    display: block;
+    width: 43%;
+    margin: auto;
+}
+
+.contenedor-imagen{
+    background: rgb(240,242,248);
+    height: 230px;
+    margin-bottom: 2%;
+    border-radius: 7px;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+/*para seleccionar las ofertas*/
+.grupoValoracion{
+    width: 50%;
+    float: left;
+    margin-right: 4%;
+}
+
+/***************************************** Fin Descuento ********************************************************/
