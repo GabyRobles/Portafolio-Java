@@ -28,5 +28,7 @@ public class SucursalBean {
         return em.createNamedQuery("Sucursal.findByIdEmpresa").setParameter("idEmpresa", empresa).getResultList();
     }
     
-    
+    public List<Sucursal> findAll(){
+        return em.createNamedQuery("Sucursal.findAll").getResultList();
+    }
 }

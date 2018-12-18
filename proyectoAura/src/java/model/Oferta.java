@@ -45,6 +45,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Oferta.findByFechaIni", query = "SELECT o FROM Oferta o WHERE o.fechaIni = :fechaIni")
     , @NamedQuery(name = "Oferta.findByFechaTerm", query = "SELECT o FROM Oferta o WHERE o.fechaTerm = :fechaTerm")
     , @NamedQuery(name = "Oferta.findByIdCategoria", query = "SELECT o FROM Oferta o WHERE o.idCategoria = :idCategoria")})
+
 public class Oferta implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -236,5 +237,5 @@ public class Oferta implements Serializable {
     public String toString() {
         return "model.Oferta[ idOferta=" + idOferta + " ]";
     }
-    
+
 }

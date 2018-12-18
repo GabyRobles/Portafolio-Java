@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Consumidor;
-import bean.ValoracionBean;
+import bean.*;
+import java.sql.SQLException;
+
 /**
  *
  * @author solita
@@ -40,8 +42,8 @@ public class ValoracionServlet extends HttpServlet {
             out.println("<h1>Servlet ValoracionServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
     }
 
@@ -88,31 +90,37 @@ public class ValoracionServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-     private void Registrar(HttpServletRequest request, HttpServletResponse response){
+    private void Registrar(HttpServletRequest request, HttpServletResponse response) {
         //instanciar el Bean para valoracion
         ValoracionBean valoracion = new ValoracionBean();
+        SucursalBean sucursalb = new SucursalBean();
+        CategoriaBean categoriab = new CategoriaBean();
+
         try {
-            Consumidor con= new Consumidor();
+            request.setAttribute("sucursales", sucursalb.findAll());
+            request.setAttribute("categorias", categoriab.findAll());
+            
+            Consumidor con = new Consumidor();
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");// formato para la fecha
             //Obtener los datos del formulario de registro
             //Integer valoracion= Integer.parseInt(request.getParameter("valoracion"));
-            Integer valo= Integer.parseInt(request.getParameter("valoracion"));
+            Integer valo = Integer.parseInt(request.getParameter("valoracion"));
             Date fechav = formatter.parse(request.getParameter("fecha"));
             String comentariov = request.getParameter("comentario");
-            Integer oferta= Integer.parseInt(request.getParameter("idofert"));
-            Integer consumidor=Integer.parseInt(request.getSession().getId());
-            Integer categoria=Integer.parseInt(request.getParameter("idcate"));
-            Integer sucursal=Integer.parseInt(request.getParameter("idsucur"));            
-                        
+            Integer oferta = Integer.parseInt(request.getParameter("idofert"));
+            Integer consumidor = Integer.parseInt(request.getSession().getId());
+            Integer categoria = Integer.parseInt(request.getParameter("idcate"));
+            Integer sucursal = Integer.parseInt(request.getParameter("idsucur"));
+
             //Alamacenar el consumidor en la base de datos
             //createValoracion(int valoracion, Date fecha,String comentario ,int idofert,int idconsumidor,int idcate,int idsucur )
-            valoracion.createValoracion(valo,fechav,comentariov,oferta,consumidor,categoria,sucursal);
+            valoracion.createValoracion(valo, fechav, comentariov, oferta, consumidor, categoria, sucursal);
             //direccionamiento al Home del consumidor
             request.getRequestDispatcher("/Consumidor/Home.jsp").forward(request, response);
-        } catch(IOException | ParseException | ServletException ex){
+        } catch (IOException | ParseException | ServletException | SQLException | NullPointerException ex) {
             //Mensaje de Error
-            System.out.println("No se puede crear la Valoracion: "+ex.getMessage());
-            
-        }  
+            System.out.println("No se puede crear la Valoracion: " + ex.getMessage());
+
+        }
     }
 }

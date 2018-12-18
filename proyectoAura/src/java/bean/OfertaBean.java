@@ -36,6 +36,38 @@ public class OfertaBean {
         }
     }
 
+    //Metodo que retorna listado de ofertas que pertenecen a una sucursal y categoría determinada por parámetros
+    public List<Oferta> findBySucursalyCategoria(int idSucursal, int idCategoria) {
+        
+        ArrayList listaRes = new ArrayList();
+        
+        try {
+            
+            //procedimiento almacenado que retorna la lista de ofertas
+            StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("listar_ofertaValoracion");
+            storedProcedureQuery.registerStoredProcedureParameter("idge", Integer.class, ParameterMode.IN);
+            storedProcedureQuery.registerStoredProcedureParameter("cate", Integer.class, ParameterMode.IN);
+            storedProcedureQuery.registerStoredProcedureParameter("registros", void.class, ParameterMode.REF_CURSOR);
+            storedProcedureQuery.setParameter("idge", idSucursal);
+            storedProcedureQuery.setParameter("cate", idCategoria);
+
+            List listaOf = storedProcedureQuery.getResultList();
+            
+            //recorre la lista
+            for (int i = 0; i < listaOf.size(); ++i) {
+                Object row[] = (Object[]) listaOf.get(i); //asignar como objeto cada fila de la lista
+                BigDecimal idOfer = (BigDecimal) row[0]; //obtener el id de la ofertas
+                String id = idOfer.toString(); //parseo a String
+                //Buscar y Agregar la oferta a la lista final
+                listaRes.add(this.findById(Integer.parseInt(id)));//parseo a Integer
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al buscar Oferta");
+        }
+
+        return listaRes;
+    }
+
     /*
     * Método de busqueda unica
      */

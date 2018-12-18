@@ -27,12 +27,7 @@ public class CategoriaBean {
 
     //constructor con la generación de la lista
     public CategoriaBean() {
-        try {
-            lista = findAll();//búsqueda de todas las categorias
-        } catch (SQLException | NullPointerException ex) {
-            //acción en caso de error
-            System.out.println("Error: " + ex.getMessage());
-        }
+
     }
 
     /*
