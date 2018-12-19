@@ -18,18 +18,22 @@
         <%@include file="../Plantillas/NavbarConsumidor.jspf" %>
         <div class="container-fluid" >
             <div class="row">
-                <%@include file="../Plantillas/MenuRedirecciones.jspf"%>
-                <c:forEach items="${listadoPorCategoria}" var="oferta">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="${oferta.imagen}" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title"><c:out value="${oferta.precioOferta}" /></h5>
-                                <h4 class="card-text"><c:out value="${oferta.tipoOferta}" /></h4>
-                                <p class="card-title"><c:out value="${oferta.nombre}" /></p>
-                                <a href="${pageContext.request.contextPath}/ConsumidorServlet?action=detalle&idofer=${oferta.idOferta}" class="btn btn-primary">ver más</a>
+                <div class="menuizquierdo">
+                    <%@include file="../Plantillas/MenuRedirecciones.jspf"%>
+                </div>
+                <div class="contenidoCategoria">
+                    <c:forEach items="${listadoPorCategoria}" var="oferta">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="${oferta.imagen}" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title"><c:out value="${oferta.precioOferta}" /></h5>
+                                    <h4 class="card-text"><c:out value="${oferta.tipoOferta}" /></h4>
+                                    <p class="card-title"><c:out value="${oferta.nombre}" /></p>
+                                    <a href="${pageContext.request.contextPath}/ConsumidorServlet?action=detalle&idofer=${oferta.idOferta}" class="btn btn-primary">ver más</a>
+                            </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </div>
             </div>
         </div>
     </body>

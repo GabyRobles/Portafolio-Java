@@ -105,8 +105,6 @@ body {
 }
 .btnInicioSesion:hover{
     cursor: pointer;
-    transform: scale(1.2);
-    transition: 1s;
 }
 
 .btnCrearUsuario{
@@ -121,8 +119,6 @@ body {
 
 .btnCrearUsuario:hover{
     cursor: pointer;
-    transform: scale(1.2);
-    transition: 1s;
 }
 
 .botto-text {
@@ -132,7 +128,7 @@ body {
     margin-top: 5%;
     position: absolute;
     margin-top: 13%;
-    right: 22%;
+    right: 42%;
 }
 
 .login-form .btn.btn-primary.reset {
@@ -141,11 +137,14 @@ body {
 /******************************************** Fin Login **********************************************************/
 /******************************************** Home **********************************************************/
 /*menu*/
-#contenedorMenu{
-    background: white;
+.menuizquierdo{
     width:16%;
+    background: white;
     border-right: 1px solid rgb(67,66,93);
     box-shadow:  8px 0px 10px 0px rgba(67,66,93, .09);
+}
+#contenedorMenu{
+    
 }
 .contenedorTituloMenu{
     margin-left: 21px;
@@ -372,3 +371,13 @@ body {
 }
 
 /***************************************** Fin Descuento ********************************************************/
+/***************************************** Categorias ********************************************************/
+.contenidoCategoria{
+    width: 84%;
+}
+.card{
+    float: left;   
+    margin-left: 6%;
+    margin-top: 33px;
+}
+/***************************************** Fin Categorias ********************************************************/

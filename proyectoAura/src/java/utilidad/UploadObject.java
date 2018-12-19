@@ -15,7 +15,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 public class UploadObject {
 
-    public static void main(String[] args) throws IOException {
+    public void subir(){
         AWSCredentials credentials = new BasicAWSCredentials("AKIAI4FGN4X6FQVIQYOQ", "+wT7u/FBRoTofZFSNG59SGZU96SBAswkLhqFxBeG");
         AmazonS3 s3client = AmazonS3ClientBuilder
                 .standard()
