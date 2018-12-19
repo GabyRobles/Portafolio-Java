@@ -30,11 +30,11 @@
                     </div>
                     <h1 class="tituloBienvenido">¡Bienvenido!</h1>
                     <p class="textoBienvenido">Ésta es la página de valoraciones. Para acceder a nuestros 
-                    descuentos, valora las ofertas que hayas comprado en cualquiera de nuestras tiendas
-                    asociadas. Para ésto, deberas fotografiar la boleta de tu compra, y valorar individualmente
-                    las ofertas que hayas comprado en esa boleta. Por cada valoración de oferta que hagas, recibirás
-                    10 puntos, los cuales se acumularán para poder ser canjeados por descuentos en nuestras categorías
-                    de productos.</p>
+                        descuentos, valora las ofertas que hayas comprado en cualquiera de nuestras tiendas
+                        asociadas. Para ésto, deberas fotografiar la boleta de tu compra, y valorar individualmente
+                        las ofertas que hayas comprado en esa boleta. Por cada valoración de oferta que hagas, recibirás
+                        10 puntos, los cuales se acumularán para poder ser canjeados por descuentos en nuestras categorías
+                        de productos.</p>
                 </div>
 
 
@@ -83,6 +83,7 @@
                                 <div class="col">
                                     <label for="cbCategoria">Seleccione Categoría:</label>
                                     <select name="cbCategoria">
+                                        <option></option>
                                         <c:forEach items="${categorias}" var="categoria">
                                             <option value="${categoria.getCategoria()}">${categoria.getNombre()}</option>
                                         </c:forEach>
@@ -107,6 +108,9 @@
                                     </a>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group" id="comentario">
+                            <textarea class="form-control" rows="5" id="com">Escribe tu comentario aquí...</textarea>
                         </div>
                     </form>
                 </div>
