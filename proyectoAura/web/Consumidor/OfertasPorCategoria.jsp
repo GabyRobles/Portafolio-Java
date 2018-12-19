@@ -23,10 +23,10 @@
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="${oferta.imagen}" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title"><c:out value="${oferta.precioOferta}" /></h5>
-                            <h4 class="card-text"><c:out value="${oferta.tipoOferta}" /></h4>
-                            <p class="card-title"><c:out value="${oferta.nombre}" /></p>
-                            <a href="${pageContext.request.contextPath}/ConsumidorServlet?action=detalle&idofer=${oferta.idOferta}" class="btn btn-primary">ver más</a>
+                            <h4 class="card-title"><c:out value="${oferta.precioOferta}" /></h5>
+                                <h4 class="card-text"><c:out value="${oferta.tipoOferta}" /></h4>
+                                <p class="card-title"><c:out value="${oferta.nombre}" /></p>
+                                <a href="${pageContext.request.contextPath}/ConsumidorServlet?action=detalle&idofer=${oferta.idOferta}" class="btn btn-primary">ver más</a>
                         </div>
                     </div>
                 </c:forEach>

@@ -28,10 +28,6 @@
         <servlet-name>GeneracionCuponPdfServlet</servlet-name>
         <servlet-class>controller.GeneracionCuponPdfServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>GerenteServlet</servlet-name>
-        <servlet-class>controller.GerenteServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/</url-pattern>
@@ -65,10 +61,6 @@
         <servlet-name>GeneracionCuponPdfServlet</servlet-name>
         <url-pattern>/GeneracionCuponPdfServlet</url-pattern>
         <url-pattern>/GeneracionCuponPdfServlet/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GerenteServlet</servlet-name>
-        <url-pattern>/GerenteServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

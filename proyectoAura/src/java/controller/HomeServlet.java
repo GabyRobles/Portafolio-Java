@@ -54,7 +54,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //direccionamiento a La página inicial del proyecto
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
+        request.getRequestDispatcher("Consumidor/Home.jsp").forward(request, response);
     }
 
     /**
