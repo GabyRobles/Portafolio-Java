@@ -5,6 +5,7 @@
  */
 package controller;
 
+import bean.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -73,6 +74,12 @@ public class GerenteServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    public void generarInforme(HttpServletRequest request, HttpServletResponse response){
+        
+        
+        
+    }
+    
     /**
      * Returns a short description of the servlet.
      *

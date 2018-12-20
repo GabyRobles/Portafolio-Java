@@ -82,6 +82,10 @@ public class ConsumidorBean {
        return validacion;
    }
    
+   public int contarUsuarios() throws SQLException, NoResultException{
+       return (Integer) em.createNamedQuery("Consumidor.countAll").getSingleResult();
+   }
+   
    /*
     * Método de sumarPuntos
     */

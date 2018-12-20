@@ -44,7 +44,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Consumidor.findByContrasena", query = "SELECT c FROM Consumidor c WHERE c.contrasena = :contrasena")
     , @NamedQuery(name = "Consumidor.findByPuntaje", query = "SELECT c FROM Consumidor c WHERE c.puntaje = :puntaje")
     , @NamedQuery(name = "Consumidor.findByTelefono", query = "SELECT c FROM Consumidor c WHERE c.telefono = :telefono")
-    , @NamedQuery(name = "Consumidor.findByEnvOferta", query = "SELECT c FROM Consumidor c WHERE c.envOferta = :envOferta")})
+    , @NamedQuery(name = "Consumidor.findByEnvOferta", query = "SELECT c FROM Consumidor c WHERE c.envOferta = :envOferta")
+    , @NamedQuery(name = "Consumidor.countAll", query = "SELECT COUNT(c) FROM Consumidor c")})
 public class Consumidor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -244,5 +245,5 @@ public class Consumidor implements Serializable {
     public String toString() {
         return "model.Consumidor[ idConsumidor=" + idConsumidor + " ]";
     }
-    
+
 }
