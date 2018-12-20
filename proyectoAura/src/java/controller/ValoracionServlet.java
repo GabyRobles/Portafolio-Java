@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Consumidor;
 import bean.*;
-import java.sql.SQLException;
 
 /**
  *
@@ -59,6 +56,16 @@ public class ValoracionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String action = request.getParameter("action");
+        switch (action) {
+            case "valoracion":
+                showValoracion(request, response);
+                break;
+            default:
+                System.out.println("Acción no encontrada");
+                break;
+        }
+
     }
 
     /**
@@ -73,8 +80,19 @@ public class ValoracionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        String action = request.getParameter("action");
+        switch (action) {
+            case "registrar":
+                Registrar(request, response);
+                break;
+            default:
+                System.out.println("Acción no encontrada");
+                break;
+        }
+
         //INSERTAR_VALORACION" (val in number,fch in date,comm in VARCHAR2,idof in number,idcons in number,idct in number,idsuc in number)
-        LocalDate fechalocal = LocalDate.now();
+        /*LocalDate fechalocal = LocalDate.now();
         Integer valoracion = Integer.parseInt(request.getParameter("valoracion"));
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         Date fecha = Date.from(fechalocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -82,7 +100,7 @@ public class ValoracionServlet extends HttpServlet {
         Integer idoferta = Integer.parseInt(request.getParameter("idoferta"));
         Integer idconsumidor = Integer.valueOf(((Consumidor) request.getSession().getAttribute("usuario")).getIdConsumidor().toString());
         Integer idcate = Integer.parseInt(request.getParameter("idcategoria"));
-        Integer idsuc = Integer.parseInt(request.getParameter("idsuc"));
+        Integer idsuc = Integer.parseInt(request.getParameter("idsuc")); */
     }
 
     @Override
@@ -93,16 +111,13 @@ public class ValoracionServlet extends HttpServlet {
     private void Registrar(HttpServletRequest request, HttpServletResponse response) {
         //instanciar el Bean para valoracion
         ValoracionBean valoracion = new ValoracionBean();
-        SucursalBean sucursalb = new SucursalBean();
-        CategoriaBean categoriab = new CategoriaBean();
 
         try {
-            request.setAttribute("sucursales", sucursalb.findAll());
-            request.setAttribute("categorias", categoriab.findAll());
-            
+
             Consumidor con = new Consumidor();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");// formato para la fecha
+
             //Obtener los datos del formulario de registro
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");// formato para la fecha
             //Integer valoracion= Integer.parseInt(request.getParameter("valoracion"));
             Integer valo = Integer.parseInt(request.getParameter("valoracion"));
             Date fechav = formatter.parse(request.getParameter("fecha"));
@@ -113,14 +128,29 @@ public class ValoracionServlet extends HttpServlet {
             Integer sucursal = Integer.parseInt(request.getParameter("idsucur"));
 
             //Alamacenar el consumidor en la base de datos
-            //createValoracion(int valoracion, Date fecha,String comentario ,int idofert,int idconsumidor,int idcate,int idsucur )
             valoracion.createValoracion(valo, fechav, comentariov, oferta, consumidor, categoria, sucursal);
             //direccionamiento al Home del consumidor
             request.getRequestDispatcher("/Consumidor/Home.jsp").forward(request, response);
-        } catch (IOException | ParseException | ServletException | SQLException | NullPointerException ex) {
+        } catch (IOException | ParseException | ServletException | NullPointerException ex) {
             //Mensaje de Error
             System.out.println("No se puede crear la Valoracion: " + ex.getMessage());
 
+        }
+    }
+
+    private void showValoracion(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            SucursalBean sucursales = new SucursalBean();
+            CategoriaBean categorias = new CategoriaBean();
+            OfertaBean ofertas = new OfertaBean();
+
+            request.setAttribute("sucursales", sucursales.findAll());
+            request.setAttribute("categorias", categorias.findAll());
+            request.setAttribute("ofertas", ofertas.findAll());
+
+            request.getRequestDispatcher("Consumidor/ValoracionOferta.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println("Error al redirccionar: " + e.getMessage());
         }
     }
 }

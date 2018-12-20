@@ -92,7 +92,7 @@
                                     <label for="cbOferta">Seleccione Oferta</label>
                                     <select name="cbOferta">
                                         <c:forEach items="${ofertas}" var="oferta">
-                                            <option value="${oferta.getOferta()}">${oferta.getNombre()}</option>
+                                            <option class="{oferta.getSucursal} {oferta.getCategoria}" value="${oferta.getOferta()}">${oferta.getNombre()}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
