@@ -432,3 +432,27 @@ body {
     color: black;
 }
 /***************************************** Fin Categorias ********************************************************/
+/************************************* Descripción Categorias ****************************************************/
+.cuerpo-caregoria{
+    background: white;
+}
+
+.contenedor-categoria{
+    margin-top: 10px;
+    width: 84%;
+}
+
+.imagen-categoria{
+    width: 40%;
+    float: left;
+}
+.imagen-categorias{
+    width: 81%;
+    display: block;
+    margin: auto;
+}
+.texto-categoria{
+    width: 43%;
+    float: left;
+}
+/***************************************** Fin Categorias ********************************************************/

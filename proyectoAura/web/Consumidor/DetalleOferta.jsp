@@ -14,18 +14,25 @@
             <%@include file="../css/style.css" %>
         </style>
     </head>
-    <body>
+    <body class="cuerpo-caregoria">
         <%@include file="../Plantillas/NavbarConsumidor.jspf" %>
         <div class="container-fluid" >
             <div class="row">
-                <%@include file="../Plantillas/MenuRedirecciones.jspf"%>
-                <img src="${oferta.imagen}" alt="Image" style="max-width:100%;">
-                <h2><c:out value="${oferta.nombre}" /></h2>
-                <h2><c:out value="${oferta.tipoOferta}" /></h2>
-                <h2>precio=<c:out value="${oferta.precioOferta}" /></h2>
-                <h2>fecha de termino=<c:out value="${oferta.fechaTerm}" /></h2>
+                <div class="menuizquierdo">
+                    <%@include file="../Plantillas/MenuRedirecciones.jspf" %>
+                </div>
+                <div class="contenedor-categoria">
+                    <div class="imagen-categoria">
+                        <img class="imagen-categorias" src="${oferta.imagen}" alt="Image" >
+                    </div>
+                    <div class="texto-categoria">
+                        <h2><c:out value="${oferta.nombre}" /></h2>
+                        <h2><c:out value="${oferta.tipoOferta}" /></h2>
+                        <h2>precio=<c:out value="${oferta.precioOferta}" /></h2>
+                        <h2>fecha de termino=<c:out value="${oferta.fechaTerm}" /></h2>
+                    </div>
+                </div>
             </div>
-            </div>
-        </body>
-    </html>
-
+        </div>
+    </body>
+</html>
