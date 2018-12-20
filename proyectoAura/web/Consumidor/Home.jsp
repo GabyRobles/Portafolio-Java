@@ -18,7 +18,9 @@
         <%@include file="../Plantillas/NavbarConsumidor.jspf" %>
         <div class="container-fluid" >
             <div class="row">
-                <%@include file="../Plantillas/MenuRedirecciones.jspf"%>
+                <div class="menuizquierdo">
+                    <%@include file="../Plantillas/MenuRedirecciones.jspf"%>
+                </div>
                 <div class="contenedorHome col-md-10 col-sm-12">
                     <c:forEach items="${mapa}" var="entry">
                         <div class="tab1">

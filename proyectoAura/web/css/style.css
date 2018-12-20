@@ -375,9 +375,60 @@ body {
 .contenidoCategoria{
     width: 84%;
 }
+.card-text{
+    float: right;
+    background-color: rgb(0,246,255);
+    width: 19%;
+    right: 5px;
+    top: 6px;
+    position: absolute;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
 .card{
     float: left;   
     margin-left: 6%;
     margin-top: 33px;
+    width: 25%;
+}
+
+.card:hover{
+    box-shadow:  0px 4px 14px 13px rgba(17, 17, 17, 0.08);
+    cursor: pointer;
+}
+
+.card-img-top{
+    margin-top:23px;
+}
+
+.imagenTop{
+    height: 310px;
+    border-bottom: 1px solid black;
+    display: inline;
+    margin-top: 40px;
+}
+
+.card-img-top{
+
+    max-height: 300px;
+    max-width: 200px;
+    display:block;
+    margin:auto;
+    
+}
+
+.card-body .card-title{
+    text-decoration: none;
+    color: black;
+}
+.card-body .card-title:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.card-link{
+    text-decoration: none;
+    color: black;
 }
 /***************************************** Fin Categorias ********************************************************/
