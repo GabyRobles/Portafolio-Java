@@ -26,8 +26,10 @@
                         <img class="imagen-categorias" src="${oferta.imagen}" alt="Image" >
                     </div>
                     <div class="texto-categoria">
+                        <h2><c:out value="${producto.nombre}" /></h2>
                         <h2><c:out value="${oferta.nombre}" /></h2>
                         <h2><c:out value="${oferta.tipoOferta}" /></h2>
+                        <h2>precio base=<c:out value="${producto.precio}" /></h2>
                         <h2>precio=<c:out value="${oferta.precioOferta}" /></h2>
                         <h2>fecha de termino=<c:out value="${oferta.fechaTerm}" /></h2>
                     </div>

@@ -17,6 +17,7 @@ import javax.persistence.Persistence;
 import javax.persistence.StoredProcedureQuery;
 import model.Categoria;
 import model.Oferta;
+import model.Producto;
 
 public class OfertaBean {
 
@@ -218,6 +219,11 @@ public class OfertaBean {
             System.out.println("error en ofertas populares");
         }
         return fetch;
+    }
+    
+    public Producto getProducto(Oferta ofe){
+        
+        return ofe.getIdProducto();
     }
 
 }

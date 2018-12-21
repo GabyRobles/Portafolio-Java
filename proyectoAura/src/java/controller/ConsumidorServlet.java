@@ -5,9 +5,7 @@
  */
 package controller;
 
-import bean.CategoriaBean;
-import bean.ConsumidorBean;
-import bean.OfertaBean;
+import bean.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -170,9 +168,11 @@ public class ConsumidorServlet extends HttpServlet {
     
     private void showDetalle(HttpServletRequest request, HttpServletResponse response) {
         OfertaBean oferta = new OfertaBean();
+        ProductoBean producto = new ProductoBean();
         try {
             int idOfer = Integer.parseInt(request.getParameter("idofer"));
             request.setAttribute("oferta", oferta.findById(idOfer));
+            request.setAttribute("producto",oferta.getProducto(oferta.findById(idOfer)));
             request.getRequestDispatcher("/Consumidor/DetalleOferta.jsp").forward(request, response);
             
         } catch (IOException | NullPointerException | NumberFormatException | SQLException | ServletException ex) {
