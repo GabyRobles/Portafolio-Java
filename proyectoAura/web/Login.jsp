@@ -27,9 +27,6 @@
                         <div class="form-group">
                             <input type="password" class="form-control" id="validationDefaultPassword" name="psw" placeholder="Contraseña" aria-describedby="inputGroupPrepend2" required />
                         </div>
-                        <div class="links">
-                            <a class="olvideContraseña" href="reset.html">¿Olvidaste tu contraseña?</a>
-                        </div>
                         <div class="contenedorBotones">
                             <button type="submit" class="btnInicioSesion">Iniciar Sesión</button>
                             <a class="btn btnCrearUsuario" href="${pageContext.request.contextPath}/LoginServlet?action=Registro">Crear Usuario</a>

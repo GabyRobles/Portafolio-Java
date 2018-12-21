@@ -29,18 +29,14 @@
                                 <div class="row blog">
                                     <div class="col-md-12">
                                         <div id="blogCarousel" class="carousel slide" data-ride="carousel">
-                                            <ol class="carousel-indicators">
-                                                <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
-                                                <li data-target="#blogCarousel" data-slide-to="1"></li>
-                                            </ol>
                                             <div class="carousel-inner">
                                                 <div class="carousel-item active">
                                                     <div class="row">
                                                         <c:forEach items="${entry.value}" var="oferta" begin="0" end="3">
                                                             <div class="col-md-3">
                                                                 <a href="${pageContext.request.contextPath}/ConsumidorServlet?action=detalle&idofer=${oferta.idOferta}">
-                                                                    <img src="${oferta.imagen}" alt="Image" style="max-width:100%;">
-                                                                    <h3><c:out value="${oferta.nombre}"/></h3>
+                                                                    <img src="${oferta.imagen}" alt="Image" style="height:50%; width: 50%; ">
+                                                                    <h5><c:out value="${oferta.nombre}"/></h5>
                                                                 </a>
                                                             </div>
                                                         </c:forEach>
@@ -54,8 +50,8 @@
                                                         <c:forEach items="${entry.value}" var="oferta" begin="4" end="7">
                                                             <div class="col-md-3">
                                                                 <a href="#">
-                                                                    <img src="${oferta.imagen}" alt="Image" style="max-width:100%;">
-                                                                    <h3><c:out value="${oferta.nombre}"/></h3>
+                                                                    <img src="${oferta.imagen}" alt="Image" style="height:50%; width: 50%;">
+                                                                    <h5><c:out value="${oferta.nombre}"/></h5>
                                                                 </a>
                                                             </div>
                                                         </c:forEach>

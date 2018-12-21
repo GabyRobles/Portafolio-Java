@@ -95,5 +95,4 @@ public class ConsumidorBean {
         puntaje += puntos;
         consumidor.setPuntaje(puntaje);
    }
-   
 }

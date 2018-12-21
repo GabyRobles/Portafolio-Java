@@ -1,7 +1,6 @@
-
 package controller;
 
-
+import bean.ConsumidorBean;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -25,24 +24,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Consumidor;
 
-
 public class GeneracionCuponPdfServlet extends HttpServlet {
 //tipogracia del documento
+
     private Font fuenteBold = new Font(Font.FontFamily.COURIER, 10, Font.BOLD);
     private Font fuenteNormal = new Font(Font.FontFamily.COURIER, 5, Font.NORMAL);
     private Font fuenteItalic = new Font(Font.FontFamily.COURIER, 5, Font.ITALIC);
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     //tipo de salida
+
+        //tipo de salida
         response.setContentType("application/pdf");
         //mostrara en pantalla un archivo PDF 
-        OutputStream out= response.getOutputStream();
+        OutputStream out = response.getOutputStream();
         //recuperar nombre de usuario
-        String nombreUsr =((Consumidor)request.getSession().getAttribute("usuario")).getNombre()+" ";
-        nombreUsr = nombreUsr.concat(((Consumidor)request.getSession().getAttribute("usuario")).getApellidos());
+        String nombreUsr = ((Consumidor) request.getSession().getAttribute("usuario")).getNombre() + " ";
+        nombreUsr = nombreUsr.concat(((Consumidor) request.getSession().getAttribute("usuario")).getApellidos());
+        Integer puntaje = ((Consumidor) request.getSession().getAttribute("usuario")).getPuntaje();
         try {
-            
+
             //margenes 36,36,10,10 documento
             Document document = new Document(PageSize.A7, 36, 36, 10, 10);//tamaño de salida del documento A4
             PdfWriter pw = PdfWriter.getInstance(document, out);//salida del documento
@@ -55,6 +56,13 @@ public class GeneracionCuponPdfServlet extends HttpServlet {
             imagen.setAlignment(Element.ALIGN_CENTER);//imagen centrada
             document.add(imagen);//guardamos la imagen
             document.add(getInfo("El descuento se realiza en los productos "));//guardamos la info del ticket
+            if (puntaje >= 1 && puntaje <= 100) {
+                document.add(getInfo("Alimentos"));
+            } else if (puntaje >= 101 && puntaje <= 500) {
+                document.add(getInfo("Alimentos, Electrónica y Línea Blanca"));
+            } else if (puntaje >= 501) {
+                document.add(getInfo("Alimentos, Electrónica, Línea Blanca y Ropa"));
+            }
             document.add(new Phrase(nombreUsr));
             document.add(new Phrase(Chunk.NEWLINE));//salto de linea
             document.add(new Phrase(Chunk.NEWLINE));//salto de linea
@@ -62,24 +70,21 @@ public class GeneracionCuponPdfServlet extends HttpServlet {
             document.add(new Phrase(Chunk.NEWLINE));//salto de linea
             document.add(new Phrase(Chunk.NEWLINE));//salto de linea             
             document.add(getFooter("Asociación de retail"));//guardamos el footer del ticket
-            document.close();//cerramos el PDF            
+            document.close();//cerramos el PDF
+
 
         } catch (DocumentException | IOException e) {
-           
-        }
-        
-    finally{
-        out.close();
+
+        } finally {
+            out.close();
         }
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -96,7 +101,8 @@ public class GeneracionCuponPdfServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-        //cabecera del archivo
+    //cabecera del archivo
+
     private Paragraph getHeader(String texto) {
         Paragraph p = new Paragraph();
         Chunk c = new Chunk();
@@ -152,5 +158,5 @@ public class GeneracionCuponPdfServlet extends HttpServlet {
         return formato.format((numero != null) ? Integer.parseInt(numero) : 0000000);
 
     }
-    
+
 }

@@ -168,7 +168,6 @@ public class ConsumidorServlet extends HttpServlet {
     
     private void showDetalle(HttpServletRequest request, HttpServletResponse response) {
         OfertaBean oferta = new OfertaBean();
-        ProductoBean producto = new ProductoBean();
         try {
             int idOfer = Integer.parseInt(request.getParameter("idofer"));
             request.setAttribute("oferta", oferta.findById(idOfer));
