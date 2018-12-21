@@ -20,7 +20,7 @@
                         <h2>Inicio de sesión de Consumidores</h2>
                         <p>Por favor ingrese su correo y contraseña</p>
                     </div>
-                    <form id="Login" action="${pageContext.request.contextPath}/LoginServlet/Consumidor" method="post">
+                    <form id="Login" action="${pageContext.request.contextPath}/LoginServlet/Consumidor" method="POST">
                         <div class="form-group">
                             <input type="email" class="form-control" id="validationDefaultUsername" name="email" placeholder="Correo" aria-describedby="inputGroupPrepend1" required />
                         </div>
