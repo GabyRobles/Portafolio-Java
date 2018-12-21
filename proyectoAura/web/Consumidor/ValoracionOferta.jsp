@@ -107,16 +107,14 @@
                                                     <p class="tenias">Tenías</p>
                                                     <p class="tienes">Tienes</p>
 
-                                                    <!--Colocar puntos antiguos-->
+                                                    <p class="tenias">${usuario.puntaje}</p>
 
-                                                    <p >></p>
-
-                                                    <!--Colocar puntos nuevos-->
+                                                    <h1 class="tienes">${usuario.puntaje+10}</h1>
 
                                                     <h1 class="graciasValoración">Gracias por Valorar!</h1>
                                                     <img class="pdf" src="https://s3.amazonaws.com/proyectoaura-storage/img/pdf.png"/>
 
-                                                    <!--insertar link pdf-->
+                                                    <a href="${pageContext.request.contextPath}/GeneracionCuponPdfServlet"> Descargue su cupon aquí</a>
                                                 </div>
                                             </center>
                                         </div>

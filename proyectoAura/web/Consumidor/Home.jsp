@@ -48,8 +48,7 @@
                                                     <!--.row-->
                                                 </div>
                                                 <!--.item-->
-                                            </div>
-                                            <div class="carousel-inner">
+                                            
                                                 <div class="carousel-item">
                                                     <div class="row">
                                                         <c:forEach items="${entry.value}" var="oferta" begin="4" end="7">

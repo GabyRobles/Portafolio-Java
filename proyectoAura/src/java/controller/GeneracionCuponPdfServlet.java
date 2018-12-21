@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Consumidor;
 
 
 public class GeneracionCuponPdfServlet extends HttpServlet {
@@ -37,8 +38,11 @@ public class GeneracionCuponPdfServlet extends HttpServlet {
         response.setContentType("application/pdf");
         //mostrara en pantalla un archivo PDF 
         OutputStream out= response.getOutputStream();
-        
+        //recuperar nombre de usuario
+        String nombreUsr =((Consumidor)request.getSession().getAttribute("usuario")).getNombre()+" ";
+        nombreUsr = nombreUsr.concat(((Consumidor)request.getSession().getAttribute("usuario")).getApellidos());
         try {
+            
             //margenes 36,36,10,10 documento
             Document document = new Document(PageSize.A7, 36, 36, 10, 10);//tamaño de salida del documento A4
             PdfWriter pw = PdfWriter.getInstance(document, out);//salida del documento
@@ -50,7 +54,8 @@ public class GeneracionCuponPdfServlet extends HttpServlet {
             imagen.scaleAbsolute(50, 50);//tamaño de imagen
             imagen.setAlignment(Element.ALIGN_CENTER);//imagen centrada
             document.add(imagen);//guardamos la imagen
-            document.add(getInfo("El descuento se realiza en los productos "+request.getSession().getAttribute("usuario")));//guardamos la info del ticket
+            document.add(getInfo("El descuento se realiza en los productos "));//guardamos la info del ticket
+            document.add(new Phrase(nombreUsr));
             document.add(new Phrase(Chunk.NEWLINE));//salto de linea
             document.add(new Phrase(Chunk.NEWLINE));//salto de linea
             document.add(getCodigoBarra(document, pw, "01"));
