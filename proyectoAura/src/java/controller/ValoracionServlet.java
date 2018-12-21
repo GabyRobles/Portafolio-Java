@@ -150,7 +150,7 @@ public class ValoracionServlet extends HttpServlet {
 
             request.getRequestDispatcher("Consumidor/ValoracionOferta.jsp").forward(request, response);
         } catch (Exception e) {
-            System.out.println("Error al redirccionar: " + e.getMessage());
+            System.out.println("Error al redireccionar: " + e.getMessage());
         }
     }
 }

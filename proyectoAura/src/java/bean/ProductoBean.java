@@ -41,6 +41,10 @@ public class ProductoBean {
         this.lista = lista;
     }
     
+    public Producto findById(String idProducto)throws SQLException, NullPointerException{
+        return (Producto) em.createNamedQuery("Producto.findByIdProducto").setParameter("idProducto", idProducto).getSingleResult();
+    }
+    
     /*
     * Método de busqueda unica por nombre
     */
