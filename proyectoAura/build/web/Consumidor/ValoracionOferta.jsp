@@ -22,7 +22,7 @@
                     <%@include file="../Plantillas/MenuRedirecciones.jspf" %>
                 </div>
                 <!--Estrellitas-->  
-                <div class="col-md-10 col-sm-12">
+                <div class="divGrandeValoracion">
                     <div id="estrellitas">
                         <div class="estrellas">
                             <img class="estrella1" src="https://s3.amazonaws.com/proyectoaura-storage/img/favourites.png"/>
@@ -33,17 +33,17 @@
                         </div>
                         <h1 class="tituloBienvenido">¡Bienvenido!</h1>
                         <p class="textoBienvenido">Ésta es la página de valoraciones. Para acceder a nuestros 
-                        descuentos, valora las ofertas que hayas comprado en cualquiera de nuestras tiendas
-                        asociadas. Para ésto, deberas fotografiar la boleta de tu compra, y valorar individualmente
-                        las ofertas que hayas comprado en esa boleta. Por cada valoración de oferta que hagas, recibirás
-                        10 puntos, los cuales se acumularán para poder ser canjeados por descuentos en nuestras categorías
-                        de productos.</p>
+                            descuentos, valora las ofertas que hayas comprado en cualquiera de nuestras tiendas
+                            asociadas. Para ésto, deberas fotografiar la boleta de tu compra, y valorar individualmente
+                            las ofertas que hayas comprado en esa boleta. Por cada valoración de oferta que hagas, recibirás
+                            10 puntos, los cuales se acumularán para poder ser canjeados por descuentos en nuestras categorías
+                            de productos.</p>
                     </div>
 
 
                     <!--Parte seba-->
                     <div id="div-form-val">
-                        <form action="${pageContext.request.contextPath}/ValoracionServlet/ValoracionOferta" class="needs-validation" id="formValoracion">
+                        <form action="${pageContext.request.contextPath}/ValoracionServlet/Registrar" class="needs-validation" id="formValoracion">
                             <div class="agregarImagen">
                                 <p class="titulo-control">Agregar Imagen</p>
                                 <div class="contenedor-imagen" for="imgInput">
@@ -53,64 +53,78 @@
                                 <!-- <label for="imgInput">Agregar Imagen</label>
                                  <input type="file" class="form-control-file" id="imgInput">-->
                             </div>
-
+                            
                             <div class="grupoValoracion">
-                                <div id="div-val">
-                                    <div id="input-type" class="row">
-                                        <div class="col-sm-6">
-                                            <label class="radio-inline">
-                                                <input name="valoracion" id="input-type-mala" value="1" type="radio"/>Mala
-                                            </label>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label class="radio-inline">
-                                                <input name="valoracion" id="input-type-buena" value="2" type="radio"/>Buena
-                                            </label>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label class="radio-inline">
-                                                <input name="valoracion" id="input-type-excelente" value="3" type="radio" checked/>Excelente
-                                            </label>
-                                        </div>                                
-                                    </div>
-                                </div>
-                                <div class="form-group" id="div-suc">
+                                <div id="SelecSucu">
                                     <label for="cbSucursales">Seleccione Sucursal:</label>
-                                    <select name="cbSucurcales">
+                                    <select class="ddl" name="cbSucurcales" required>
                                         <c:forEach items="${sucursales}" var="sucursal">
                                             <option value="${sucursal.getIdSucursal()}">${sucursal.getNombre()}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <label for="cbCategoria">Seleccione Categoría:</label>
-                                        <select name="cbCategoria">
-                                            <c:forEach items="${categorias}" var="categoria">
-                                                <option value="${categoria.getCategoria()}">${categoria.getNombre()}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label for="cbOferta">Seleccione Oferta</label>
-                                        <select name="cbOferta">
-                                            <c:forEach items="${ofertas}" var="oferta">
-                                                <option class="{oferta.getSucursal} {oferta.getCategoria}" value="${oferta.getOferta()}">${oferta.getNombre()}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <a href="#">
-                                            <span class="glyphicon glyphicon-ok"></span>
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <a href="#">
-                                            <span class="glyphicon glyphicon-remove"></span>
-                                        </a>
+                                <div id="SelecCateg">    
+                                    <label for="cbCategoria">Seleccione Categoría:</label>
+                                    <select class="ddl" name="cbCategoria" required>
+                                        <c:forEach items="${categorias}" var="categoria" >
+                                            <option value="${categoria.getIdCategoria()}">${categoria.getNombre()}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                
+                                <div id="selecOferta">
+                                    <label for="cbOferta">Seleccione Oferta:</label>
+                                    <select class="ddl" name="cbOferta" required>
+                                        <c:forEach items="${ofertas}" var="oferta">
+                                            <option class="{oferta.getIdSucursal} {oferta.getIdCategoria}" value="${oferta.getIdOferta()}">${oferta.getNombre()}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                
+                                <div id= "radio_valoracion">
+                                    <label for="cbOferta">Evalúe la Oferta:</label><br>
+                                    <label class="radio-inline">
+                                        <input id="op1" type="radio" name="valoracion" value="1">Mala
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input id="op2" type="radio" name="valoracion" value="2">Buena
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input id="op3" type="radio" name="valoracion" value="3" checked>Excelente
+                                    </label>
+                                </div>
+                                
+                                <div class="ingresotexto">
+                                    <textarea placeholder='Escribe tu comentario aquí...' type="text" name="nombredelacaja" class="textbox-Valoracion"></textarea>
+                                    <button class="botonIngresarValoracion"><a href="#openModal" class="modalvaloracion">Ingresar</a></button>
+                                    <!--modal-->
+                                    <div id="openModal" class="modalDialog">
+                                        <div>
+                                            <center>
+                                                <a href="#close" title="Close" class="close">X</a>
+                                                <div class="texto-modal">
+                                                    <h2 class="puntos">Puntos</h2>
+                                                    <p class="tenias">Tenías</p>
+                                                    <p class="tienes">Tienes</p>
+
+                                                    <!--Colocar puntos antiguos-->
+
+                                                    <p >></p>
+
+                                                    <!--Colocar puntos nuevos-->
+
+                                                    <h1 class="graciasValoración">Gracias por Valorar!</h1>
+                                                    <img class="pdf" src="https://s3.amazonaws.com/proyectoaura-storage/img/pdf.png"/>
+
+                                                    <!--insertar link pdf-->
+                                                </div>
+                                            </center>
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            
                         </form>
                     </div>
                 </div>

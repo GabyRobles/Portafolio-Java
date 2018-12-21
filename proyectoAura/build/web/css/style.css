@@ -275,9 +275,15 @@ body {
     border: 1px solid grey;
 }
 /******************************************** Fin Home **********************************************************/
-/******************************************* Descuento **********************************************************/
+/******************************************* Descuento - valoraciones **********************************************************/
+.divGrandeValoracion{
+    width: 84%;
+    margin-bottom: 30px;
+}
+
 #estrellitas{
     text-align: center;
+    margin-bottom: 10%;
 }
 .estrellas{
     margin-top: 3%;
@@ -328,6 +334,7 @@ body {
     text-align: justify;
     width: 75%;
     margin-left: 13%;
+    margin-top: 40px;
 }
 
 /*Parte Seba*/
@@ -338,15 +345,17 @@ body {
 .agregarImagen{
     width: 37%;
     float: left;
-    margin-right: 4%;
+    margin-right: 2%;
     background: linear-gradient(96deg, rgb(0, 167, 255) -16%, rgb(0, 255, 137) 66%);
     border: 1px solid rgb(67,66,93);
     font-weight: 500;
     border-radius: 7px;
+    margin-left: 2%;
 }
 .titulo-control{
     text-align: center;
     color: white;
+    margin-top: 15px;
 }
 .agregarImg{
     display: block;
@@ -365,12 +374,131 @@ body {
 
 /*para seleccionar las ofertas*/
 .grupoValoracion{
-    width: 50%;
+    width: 54%;
     float: left;
-    margin-right: 4%;
+}
+#SelecSucu{
+    margin-bottom: 2%;
+}
+#SelecCateg{
+    margin-bottom: 2%;
+}
+#selecOferta{
+    margin-bottom: 2%;
+}
+.ddl{
+    height: 32px;
+    border-radius: 5px;
 }
 
-/***************************************** Fin Descuento ********************************************************/
+#radio_valoracion{
+    margin-bottom: 2%;
+}
+
+.radio-inline{
+margin-right: 2%;
+}
+
+.textbox-Valoracion{
+    width: 90%;
+    border-radius: 5px;
+    height: 200px;
+    border: 1px solid rgb(67,66,93);
+    overflow:hidden;
+}
+.botonIngresarValoracion{
+    width: 18%;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(67,66,93);
+    height: 37px;
+    background: white;
+    margin-left: 13px;
+}
+.modalvaloracion{
+    color: black;
+    padding: 8px 23px;
+}
+.modalvaloracion:hover{
+    color: black;
+    text-decoration: none;
+}
+
+/*modal*/
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+.modalDialog > div {
+	width: 50%;
+        height: 552px;
+        position: relative;
+        margin: 3% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+	background: #ffffff;
+}
+.close {
+	background: linear-gradient(96deg, rgb(0,167,255) -16%, rgb(255,168,225) 66%);
+        color: #FFFFFF;
+        line-height: 36px;
+        width: 37px;
+        position: absolute;
+        right: -21px;
+        text-align: center;
+        top: -15px;
+        text-decoration: none;
+        font-weight: 400;
+        border-radius: 100%;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+        opacity: 1 !important;
+}
+.close:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.texto-modal{
+    margin-top: 5%;
+}
+.puntos{
+    margin-top: 5%; 
+    margin-bottom: 7%;
+}
+.tenias{
+    width: 50%;
+    float: left;
+    margin-bottom: 5%;
+}
+.tienes{
+    width: 50%;
+    float: left;
+    margin-bottom: 5%;
+}
+.graciasValoración{
+    margin-bottom: 5%;
+    margin-top: 10%;
+}
+.pdf{
+    width: 10%;
+}
+/***************************************** Fin Descuento - valoraciones ********************************************************/
 /***************************************** Categorias ********************************************************/
 .contenidoCategoria{
     width: 84%;
