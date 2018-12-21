@@ -103,15 +103,17 @@
                                             <center>
                                                 <a href="#close" title="Close" class="close">X</a>
                                                 <div class="texto-modal">
-                                                    <h2 class="puntos">Puntos</h2>
-                                                    <p class="tenias">Tenías</p>
-                                                    <p class="tienes">Tienes</p>
+                                                    <div class="contenedorTexto">
+                                                        <h2 class="puntos">Puntos</h2>
+                                                        <p class="tenias">Tenías</p>
+                                                        <p class="tienes">Tienes</p>
 
-                                                    <p class="tenias">${usuario.puntaje}</p>
-
-                                                    <h1 class="tienes">${usuario.puntaje+10}</h1>
-
-                                                    <h1 class="graciasValoración">Gracias por Valorar!</h1>
+                                                        <p class="teniasValor">${usuario.puntaje}</p>
+                                                        <p class="loguito"> > </p>
+                                                        <p class="tienesValor">${usuario.puntaje+10}</p>
+                                                    </div>
+                                                    <p class="graciasValoracion">Gracias por Valorar!</p>
+                                                    
                                                     <img class="pdf" src="https://s3.amazonaws.com/proyectoaura-storage/img/pdf.png"/>
 
                                                     <a href="${pageContext.request.contextPath}/GeneracionCuponPdfServlet"> Descargue su cupon aquí</a>
