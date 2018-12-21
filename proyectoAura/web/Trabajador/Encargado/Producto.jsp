@@ -33,11 +33,11 @@
                 <div class="contenedorTituloBusqueda">
                     <a class="tituloProducto">Productos</a>
 
-                    <div class="contenedorBuscar form-inline">
+                    <!--<div class="contenedorBuscar form-inline">
                         <input class="form-control" type="text" placeholder="Buscar" id="buscador"/>
                         <input class="btn btn-primary" type="button" value="Buscar" id="btnBuscador"/>
-                    </div>
-                </div>
+                    </div>-->
+                </div> 
                 <table id="productos" class="table table-bordered table-hover">
                     <thead class="thead-light">
                         <tr>

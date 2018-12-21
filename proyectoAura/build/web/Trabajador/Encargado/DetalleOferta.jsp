@@ -11,18 +11,17 @@
 
     <c:if test="${param.oferta != null}">
         <h1 class="display-4 text-secondary" >Editar Oferta</h1>
-
-        <form action="${pageContext.request.contextPath}/OfertaServlet/Editar" method="post">
+        <form action="${pageContext.request.contextPath}/OfertaServlet/Editar" method="post" enctype="multipart/form-data">
         </c:if>
         <c:if test="${param.oferta == null}">
             <h1 class="display-4 text-secondary" >Crear Oferta</h1>
-            <form action="${pageContext.request.contextPath}/OfertaServlet/Crear" method="post">
+            <form action="${pageContext.request.contextPath}/OfertaServlet/Crear" method="post" enctype="multipart/form-data">
             </c:if>
 
             <div class="form-row">        
                 <div class="form-group col-md-6">
-                    <c:if test="${param.oferta == null}"><label  class="text-muted" >ID</label> <br/><input type="text" class="form-control" name="idProducto" placeholder="Id Producto" /></c:if>
-                    <c:if test="${param.oferta != null}"><label  class="text-muted">ID</label> <br/><input type="text" class="form-control" name="idProducto" value="${param.ofertaID}" /></c:if>
+                    <c:if test="${param.oferta == null}"><label  class="text-muted">ID Producto</label> <br/><input type="text" class="form-control" name="idProducto" placeholder="Id Producto" /></c:if>
+                    <c:if test="${param.oferta != null}"><label  class="text-muted">ID Producto</label> <br/><input type="text" class="form-control" name="idProducto" value="${param.oIdProducto}" /></c:if>
                     </div>
 
                     <div class="form-group col-md-6">
@@ -34,8 +33,8 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                    <c:if test="${param.oferta == null}"><label  class="text-muted">Categoría</label> <br/><input type="text" class="form-control" name="idCat" placeholder="id Categoria"/></c:if>
-                    <c:if test="${param.oferta != null}"><label  class="text-muted">Categoría</label> <br/><input type="text" class="form-control" name="idCat" value="${param.oCategoria}" /></c:if>
+                    <c:if test="${param.oferta == null}"><label  class="text-muted">ID Categoría</label> <br/><input type="text" class="form-control" name="idCat" placeholder="id Categoria"/></c:if>
+                    <c:if test="${param.oferta != null}"><label  class="text-muted">ID Categoría</label> <br/><input type="text" class="form-control" name="idCat" value="${param.oCategoria}" /></c:if>
                     </div>
 
                     <div class="form-group col-md-6">
@@ -45,13 +44,13 @@
                 </div>
 
 
-            <c:if test="${param.oferta == null}"><label  class="text-muted">Imagen Oferta</label> <br/><input type="text" class="form-control" name="imagenURL" placeholder="imagen" /></c:if>
-            <c:if test="${param.oferta != null}"><label  class="text-muted">Imagen Oferta</label> <br/><input type="text" class="form-control" name="imagenURL" value="${param.oImagen}" /></c:if>
+            <c:if test="${param.oferta == null}"><label  class="text-muted">Imagen Oferta</label> <br/><input type="file" class="form-control" name="imagenURL" accept="image/png, image/jpeg"/></c:if>
+            <c:if test="${param.oferta != null}"><label  class="text-muted">Imagen Oferta</label> <br/><input type="file" class="form-control" name="imagenURL" value="${param.oImagen}" /></c:if>
 
             <c:if test="${param.oferta == null}"><label  class="text-muted">Precio</label> <br/><input type="number" name="precio" class="form-control" placeholder="precio"/></c:if>
             <c:if test="${param.oferta != null}"><label  class="text-muted">Precio</label> <br/><input type="number" name="precio" class="form-control" value="${param.oPrecio}"/></c:if>
 
-            <c:if test="${param.oferta == null}"><input type="hidden" name="idEncargado" value="${usuario.getIdTrabajador()}"/></c:if>
+            <c:if test="${param.oferta == null}"><input type="hidden" name="idEncargado" value="${usuario.idTrabajador}"/></c:if>
             <c:if test="${param.oferta != null}"><input type="hidden" name="idEncargado" value="${param.oIdTrab}"/></c:if>
 
             <c:if test="${param.oferta == null}">  
@@ -63,24 +62,28 @@
                 </select></c:if>
             <c:if test="${param.oferta != null}">         
                 <label  class="text-muted">Sucursal</label> <br/>
-                <input type="text" name="imagenURL" class="form-control" value="${param.oSucursal}" />
+                <select name="cbSucurcales" class="form-control">
+                    <c:forEach items="${sucursales}" var="sucursal">                   
+                        <option value="${sucursal.getIdSucursal()}">${sucursal.getNombre()}</option>
+                    </c:forEach>
+                </select>
             </c:if>
 
 
             <div class="form-row"> 
                 <div class="form-group col-md-6">
-                    <c:if test="${param.oferta == null}"><label  class="text-muted">Fecha Inicio Oferta</label> <br/><input type="date" class="form-control" name="fechaIni" placeholder="Fecha de inicio" /></c:if>
-                    <c:if test="${param.oferta != null}"><label  class="text-muted">Fecha Inicio Oferta</label><br/><input type="date" class="form-control" name="fechaIni" value="${param.oFechaI}" /></c:if>
+                    <c:if test="${param.oferta == null}"><label  class="text-muted">Fecha Inicio Oferta</label><br/><input type="date" class="form-control" name="fechaIni" placeholder="Fecha de inicio" /></c:if>
+                    <c:if test="${param.oferta != null}"><label  class="text-muted">Fecha Inicio Oferta</label><br/><input type="date" class="form-control" name="fechaIni" placeholder="${param.oFechaI}" /></c:if>
                     </div>
                     <div class="form-group col-md-6">
                     <c:if test="${param.oferta == null}"><label  class="text-muted">Fecha Término Oferta</label><br/><input type="date" class="form-control" name="fechaTerm" placeholder="Fecha de termino" /></c:if>
-                    <c:if test="${param.oferta != null}"><label  class="text-muted">Fecha Término Oferta</label> <br/><input type="date" class="form-control" name="fechaTerm" placeholder="${param.oFechaT}" /></c:if>
+                    <c:if test="${param.oferta != null}"><label  class="text-muted">Fecha Término Oferta</label><br/><input type="date" class="form-control" name="fechaTerm" placeholder="${param.oFechaT}" /></c:if>
                     </div>
                 </div>
             <c:if test="${param.oferta == null}"><input type="submit" class="btn btn-primary" value="Crear"/></c:if>
             <c:if test="${param.oferta != null}"><input type="submit" class="btn btn-warning" value="Actualizar"/></c:if>
-            <button class="btn btn-secondary">Limpiar</button>
+            <input type="reset" class="btn btn-secondary" value="Limpiar" />
         </form>
-        
+
 
 </html>

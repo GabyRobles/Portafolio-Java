@@ -8,7 +8,9 @@ package controller;
 import bean.OfertaBean;
 import bean.SucursalBean;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,14 +18,19 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import model.Oferta;
 import model.Trabajador;
+import utilidad.ImagenesAmazon;
+import utilidad.StreamUtil;
 
 @WebServlet(name = "OfertaServlet", urlPatterns = {"/OfertaServlet"})
+@MultipartConfig
 public class OfertaServlet extends HttpServlet {
 
     /**
@@ -107,6 +114,7 @@ public class OfertaServlet extends HttpServlet {
                 break;
             case "Editar"://llamar a la acción de Editar oferta
                 editarOferta(request, response);
+                break;
             default://accion a realizar en caso de petición inválida
                 System.out.println("Acción no encontrada");
                 break;
@@ -176,17 +184,27 @@ public class OfertaServlet extends HttpServlet {
             Integer idProducto = Integer.valueOf(request.getParameter("idProducto"));//Parseo de String a Integer
             Integer idCat = Integer.valueOf(request.getParameter("idCat"));//Parseo de String a Integer
             String tipoOferta = request.getParameter("tipo");
-            String imagen = request.getParameter("imagenURL");
+            //String imagen = request.getParameter("imagenURL");
             Integer precio = Integer.valueOf(request.getParameter("precio"));//Parseo de String a Integer
             Integer idEncargado = Integer.valueOf(request.getParameter("idEncargado"));//Parseo de String a Integer
             Integer idSucur = Integer.valueOf(request.getParameter("cbSucurcales"));//Parseo de String a Integer
             Date fechaIni = formatter.parse(request.getParameter("fechaIni"));//Parseo de String a Date
             Date fechaTerm = formatter.parse(request.getParameter("fechaTerm"));//Parseo de String a Date
+            
+            //procesar la imagen
+            ImagenesAmazon imgAWS = new ImagenesAmazon();
+            Part filePart = request.getPart("imagenURL");
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            InputStream fileContent = filePart.getInputStream();
+            
+            imgAWS.subirImagen(fileName, StreamUtil.stream2file(fileContent));
+            
+            String imagen = imgAWS.getURL(fileName);
             //crear la Oferta dentro de la base de datos
             oferta.create(nombre, tipoOferta, imagen, precio, fechaIni, fechaTerm, idEncargado, idSucur, idProducto, idCat);
             //direccionamiento a la página de ofertas
-            response.sendRedirect("/Trabajador/Encargado/Ofertas.jsp");
-        } catch (IOException | NumberFormatException | SQLException | ParseException e) {
+            response.sendRedirect(request.getContextPath()+"/OfertaServlet?action=Listar");
+        } catch (IOException | NumberFormatException | ParseException | SQLException |ServletException e) {
             System.out.println("Error al crear la oferta" + e.getLocalizedMessage());
         }
     }
@@ -213,23 +231,33 @@ public class OfertaServlet extends HttpServlet {
             //asignar el formato de las fechas
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             //obtener los datos del formulario de edición de ofertas
-            Integer idOferta = Integer.valueOf(request.getParameter("id"));//Parseo de String a Integer
+            Integer idOferta = Integer.valueOf(request.getParameter("idProducto"));//Parseo de String a Integer
             String nombre = request.getParameter("nombreOferta");
             Integer idProducto = Integer.valueOf(request.getParameter("idProducto"));//Parseo de String a Integer
             Integer idCat = Integer.valueOf(request.getParameter("idCat"));//Parseo de String a Integer
             String tipoOferta = request.getParameter("tipo");
-            String imagen = request.getParameter("imagenURL");
+            //String imagen = request.getParameter("imagenURL");
             Integer precio = Integer.valueOf(request.getParameter("precio"));//Parseo de String a Integer
             Integer idEncargado = Integer.valueOf(request.getParameter("idEncargado"));//Parseo de String a Integer
             Integer idSucur = Integer.valueOf(request.getParameter("cbSucurcales"));//Parseo de String a Integer
             Date fechaIni = formatter.parse(request.getParameter("fechaIni"));//Parseo de String a Date
             Date fechaTerm = formatter.parse(request.getParameter("fechaTerm"));//Parseo de String a Date
+            //procesar la imagen
+            ImagenesAmazon imgAWS = new ImagenesAmazon();
+            Part filePart = request.getPart("imagenURL");
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            InputStream fileContent = filePart.getInputStream();
+            
+            imgAWS.subirImagen(fileName, StreamUtil.stream2file(fileContent));
+            
+            String imagen = imgAWS.getURL(fileName);
+
             //editar la oferta en la base de datos
             oferta.update(idOferta, nombre, tipoOferta, imagen, precio, fechaIni, fechaTerm, idEncargado, idSucur, idProducto, idCat);
             //direccionamiento a la lista de ofertas
-            response.sendRedirect("/Trabajador/Encargado/Ofertas.jsp");
-        } catch (IOException | NumberFormatException | SQLException | ParseException e) {
-            System.out.println("Error al editar: " + e.getLocalizedMessage());
+            response.sendRedirect(request.getContextPath()+"/OfertaServlet?action=Listar");
+        } catch (Exception e) {
+            System.out.println("Error al editar: " + e.getMessage());
         }
     }
 
@@ -241,7 +269,7 @@ public class OfertaServlet extends HttpServlet {
             //Eliminar la oferta de la base de datos
             oferta.delete(idOferta);
             //direccionamiento a la lista de ofertas
-            response.sendRedirect("/Trabajador/Encargado/Ofertas.jsp");
+            response.sendRedirect(request.getContextPath()+"/OfertaServlet?action=Listar");
         } catch (IOException | NumberFormatException | SQLException e) {
             System.out.println("Error no se pudo eliminar: " + e.getLocalizedMessage());
         }

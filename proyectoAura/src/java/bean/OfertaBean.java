@@ -184,9 +184,9 @@ public class OfertaBean {
     public void delete(Integer idOferta) throws SQLException {
         //definir procedimiento
         StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("OPERACIONES_CRUD.ELIMINAR_OFERTA");
-        storedProcedureQuery.registerStoredProcedureParameter("idofer", Integer.class, ParameterMode.IN);
+        storedProcedureQuery.registerStoredProcedureParameter("idpue", BigDecimal.class, ParameterMode.IN);
         //asignar valores
-        storedProcedureQuery.setParameter("idofer", idOferta);
+        storedProcedureQuery.setParameter("idpue", BigDecimal.valueOf(idOferta));
         //ejecutar
         storedProcedureQuery.execute();
     }
